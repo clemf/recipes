@@ -3,16 +3,24 @@
 <form action="/edit_recipe_name" method="post">
   <input type="hidden" name="_method" value="patch">
   <input type="hidden" name="recipe_id" value="<%= @recipe.id %>"
-  <label for="name">Enter a new name:</label>
+  <label for="name">Recipe name:</label>
   <input id="name" name="name" type="text">
-  <button type=submit>Change name</button>
+  <button type="submit">Change name</button>
 </form>
 
 <h3>Ingredients:</h3>
 
 <ul>
   <% @recipe.ingredients.each do |ingredient| %>
-    <li><%= ingredient.text %></li>
+    <li>
+      <%= ingredient.text %>
+      <form action="/delete_ingredient" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="id" value="<%= ingredient.id %>">
+        <button type="submit">Delete</button>
+      </form>
+
+    </li>
   <% end %>
 </ul>
 
@@ -26,8 +34,16 @@
 <h3>Instructions</h3>
 
 <ol>
-  <% @recipe.instructions.order(:number).each do |instruction| %>
-    <li><%= instruction.text %></li>
+  <% @recipe.instructions.each do |instruction| %>
+    <li>
+      <%= instruction.text %>
+    <form action="/delete_instruction" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="hidden" name="id" value="<%= instruction.id %>">
+      <button type="submit">Delete</button>
+    </form>
+
+    </li>
     <% end %>
 </ol>
 
@@ -38,6 +54,12 @@
   <label for="number">Enter instruction number:</label>
   <input id="number" name="number" type="text">
   <button type="submit">Add instruction</button>
+</form>
+
+<form action="/delete_recipe" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="hidden" name="recipe_id" value="<%= @recipe.id %>">
+  <button type="submit">Delete Recipe</button>
 </form>
 
 <a href="/">Back to recipe page</a>

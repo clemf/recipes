@@ -42,3 +42,24 @@ patch("/edit_recipe_name") do
   recipe.update(name: name)
   redirect back
 end
+
+get("/recipes/:id") do
+  @recipe = Recipe.find(params.fetch("id"))
+  @title = @recipe.name
+  erb(:recipe)
+end
+
+delete("/delete_ingredient") do
+  Ingredient.destroy(params.fetch("id").to_i)
+  redirect back
+end
+
+delete("/delete_instruction") do
+  Instruction.destroy(params.fetch("id").to_i)
+  redirect back
+end
+
+delete("/delete_recipe") do
+  Recipe.destroy(params.fetch("recipe_id").to_i)
+  redirect("/")
+end
