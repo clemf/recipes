@@ -1,0 +1,16 @@
+<h1><%= @recipe.name %></h1>
+
+<h3>Ingredients:</h3>
+
+<ul>
+  <% @recipe.ingredients.each do |ingredient| %>
+    <li><%= ingredient.text %></li>
+  <% end %>
+</ul>
+
+<form action="/add_ingredient" method="post">
+  <input type="hidden" name="recipe_id" value="<%= @recipe.id %>">
+  <label for="text">Enter ingredient name and amount:</label>
+  <input id="text" name="text" type="text">
+  <button type="submit">Add ingredient</button>
+</form>
