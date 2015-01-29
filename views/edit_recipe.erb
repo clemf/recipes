@@ -1,5 +1,13 @@
 <h1><%= @recipe.name %></h1>
 
+<form action="/edit_recipe_name" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <input type="hidden" name="recipe_id" value="<%= @recipe.id %>"
+  <label for="name">Enter a new name:</label>
+  <input id="name" name="name" type="text">
+  <button type=submit>Change name</button>
+</form>
+
 <h3>Ingredients:</h3>
 
 <ul>
@@ -17,11 +25,11 @@
 
 <h3>Instructions</h3>
 
-<ul>
-  <% @recipe.instructions.each do |instruction| %>
+<ol>
+  <% @recipe.instructions.order(:number).each do |instruction| %>
     <li><%= instruction.text %></li>
     <% end %>
-</ul>
+</ol>
 
 <form action="/add_instruction" method="post">
   <input type="hidden" name="recipe_id" value="<%= @recipe.id %>">
