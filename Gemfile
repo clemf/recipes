@@ -1,13 +1,12 @@
 source("https://rubygems.org")
 
- gem("pg")
- gem("rake")
- gem("sinatra")
- gem("sinatra-contrib")
- gem("sinatra-activerecord")
+gem("sinatra")
+gem("sinatra-contrib", :require => "sinatra/reloader")
+gem("sinatra-activerecord")
+gem("rake")
+gem("pg")
 
- group(:test) do
-   gem("rspec")
-   gem("shoulda-matchers")
- end
- 
+group(:test) do
+ gem("rspec")
+ gem("shoulda-matchers")
+end
