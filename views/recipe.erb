@@ -1,5 +1,19 @@
+<h2>Ingredients:</h2>
+
 <ul>
   <% @recipe.ingredients.each do |ingredient| %>
     <li><%= ingredient.text %></li>
   <% end %>
 </ul>
+
+<h2>Instructions:</h2>
+
+<ol>
+  <% @recipe.instructions.each do |instruction| %>
+    <li>
+      <%= instruction.text %>
+    </li>
+    <% end %>
+</ol>
+
+<a href="/">Back to recipes</a>
