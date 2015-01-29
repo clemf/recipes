@@ -1,1 +1,17 @@
 <h1> recipe book </h1>
+
+<ul>
+
+  <% Recipe.all.each() do |recipe| %>
+
+  <li><%= recipe.name %></li>
+
+  <% end %>
+
+</ul>
+
+<form action="/add_recipe" method="post">
+  <label for="name">recipe name:</label>
+  <input id="name" name="name" type="text">
+  <button type="submit">add recipe</button>
+</form>
