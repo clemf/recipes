@@ -14,3 +14,22 @@
   <input id="text" name="text" type="text">
   <button type="submit">Add ingredient</button>
 </form>
+
+<h3>Instructions</h3>
+
+<ul>
+  <% @recipe.instructions.each do |instruction| %>
+    <li><%= instruction.text %></li>
+    <% end %>
+</ul>
+
+<form action="/add_instruction" method="post">
+  <input type="hidden" name="recipe_id" value="<%= @recipe.id %>">
+  <label for="text">Enter recipe instructions:</label>
+  <input id="text" name="text" type="text">
+  <label for="number">Enter instruction number:</label>
+  <input id="number" name="number" type="text">
+  <button type="submit">Add instruction</button>
+</form>
+
+<a href="/">Back to recipe page</a>

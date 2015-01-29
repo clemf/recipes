@@ -25,3 +25,11 @@ post("/add_ingredient") do
   Ingredient.create(recipe_id: recipe_id, text: text)
   redirect back
 end
+
+post("/add_instruction") do
+  recipe_id = params.fetch("recipe_id").to_i
+  text = params.fetch("text")
+  number = params.fetch("number")
+  Instruction.create(recipe_id: recipe_id, text: text, number: number)
+  redirect back
+end
