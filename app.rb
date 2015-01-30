@@ -63,3 +63,22 @@ delete("/delete_recipe") do
   Recipe.destroy(params.fetch("recipe_id").to_i)
   redirect("/")
 end
+
+post("/add_category") do
+  name = params.fetch("name")
+  Category.create(name: name)
+  redirect back
+end
+
+get("/edit_category/:id") do
+  @title = "Edit Category"
+  @category = Category.find(params.fetch("id").to_i)
+  erb(:edit_category)
+end
+
+post("/add_to_category") do
+  category = Category.find(params.fetch("category_id").to_i)
+  recipe = Recipe.find(params.fetch("recipe_id").to_i)
+  category.recipes << recipe
+  redirect back
+end

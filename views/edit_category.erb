@@ -1,0 +1,23 @@
+<h1><%= @category.name %></h1>
+
+<ul>
+  <% @category.recipes.all.each() do |recipe| %>
+  <li>
+    <a href="/recipes/<%= recipe.id %>"><%= recipe.name %></a>
+    <a href="/edit_recipe/<%= recipe.id %>"><small>(edit)</small></a>
+  </li>
+  <% end %>
+</ul>
+
+<form action="/add_to_category" method="post">
+  <input type="hidden" name="category_id" value="<%= @category.id %>">
+  <label for="recipe_id">Select a recipe:</label>
+  <select id="recipe_id" name="recipe_id" type="text">
+    <% Recipe.all.each do |recipe| %>
+      <option value="<%= recipe.id %>"><%= recipe.name %></option>
+    <% end %>
+  </select>
+  <button type="submit">Add to category</button>
+</form>
+
+<a href="/">Back to recipe page</a>
