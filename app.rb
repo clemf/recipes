@@ -82,3 +82,9 @@ post("/add_to_category") do
   category.recipes << recipe
   redirect back
 end
+
+get("/categories/:id") do
+  @category = Category.find(params.fetch("id"))
+  @title = @category.name
+  erb(:category)
+end
